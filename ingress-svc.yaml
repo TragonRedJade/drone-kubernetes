@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: ci.redjade.software
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: drone-svc
+          servicePort: 8000

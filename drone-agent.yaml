@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: drone-agent
-        image: drone/drone:0.5
+        image: drone/drone:0.7.3
         args: ["agent"]
         env:
         - name: DRONE_SERVER
