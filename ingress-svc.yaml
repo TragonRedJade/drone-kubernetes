@@ -4,12 +4,12 @@ metadata:
   name: test
   annotations:
     ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/ssl-redirect: "true"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    kubernetes.io/ingress.allow-http: "false"
 spec:
-  rules:
-  - host: ci.redjade.software
-    http:
-      paths:
-      - path: /*
-        backend:
-          serviceName: drone-svc
-          servicePort: 8000
+  tls:
+    - secretName: cert-secret
+  backend:
+    serviceName: drone
+    servicePort: 8000

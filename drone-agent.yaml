@@ -18,7 +18,7 @@ spec:
           # this server value may be different depending on how you set up your kubernetes
           # cluster.  Also if you put it in a different namespace you would use that instead of
           # 'default'.  
-          value: "ws://drone.default.svc.cluster.local:8000/ws/broker"
+          value: "wss://drone.default.svc.cluster.local:8000/ws/broker"
         - name: DRONE_SECRET
           valueFrom:
             secretKeyRef:
