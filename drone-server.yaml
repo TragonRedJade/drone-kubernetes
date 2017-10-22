@@ -10,13 +10,13 @@ spec:
         app: drone
     spec:
       containers:
-      - name: nginx
-        image: us.gcr.io/high-gecko-144218/drone-health
+      - name: drone
+        image: drone/drone:latest
         ports:
         - containerPort: 80
           hostPort: 80
-      - name: drone
-        image: drone/drone:0.7.3
+        - containerPort: 9000
+          hostPort: 9000
         env:
         - name: DRONE_GITHUB
           value: "true"
@@ -35,6 +35,8 @@ spec:
             secretKeyRef:
               name: drone-secrets
               key: DRONE_SECRET
+        - name: DRONE_HOST
+          value: https://ci.redjade.software/
         - name: DRONE_OPEN
           value: "true"
         # see: http://readme.drone.io/0.5/install/authorization/

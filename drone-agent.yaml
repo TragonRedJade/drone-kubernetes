@@ -11,14 +11,14 @@ spec:
     spec:
       containers:
       - name: drone-agent
-        image: drone/drone:0.7.3
+        image: drone/agent:0.8
         args: ["agent"]
         env:
         - name: DRONE_SERVER
           # this server value may be different depending on how you set up your kubernetes
           # cluster.  Also if you put it in a different namespace you would use that instead of
           # 'default'.  
-          value: "wss://drone.default.svc.cluster.local:8000/ws/broker"
+          value: drone:9000
         - name: DRONE_SECRET
           valueFrom:
             secretKeyRef:
@@ -28,7 +28,7 @@ spec:
         - mountPath: /var/run/docker.sock
           name: docker-sock
         ports:
-        - containerPort: 8000
+        - containerPort: 9000
       volumes: 
         - name: docker-sock
           hostPath: 
