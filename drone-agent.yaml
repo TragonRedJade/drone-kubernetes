@@ -18,7 +18,7 @@ spec:
           # this server value may be different depending on how you set up your kubernetes
           # cluster.  Also if you put it in a different namespace you would use that instead of
           # 'default'.  
-          value: drone:9000
+          value: drone.default.svc.cluster.local:9000
         - name: DRONE_SECRET
           valueFrom:
             secretKeyRef:

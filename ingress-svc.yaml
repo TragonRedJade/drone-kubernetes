@@ -11,5 +11,5 @@ spec:
   tls:
     - secretName: cert-secret
   backend:
-    serviceName: drone
+    serviceName: drone-http
     servicePort: 8000
