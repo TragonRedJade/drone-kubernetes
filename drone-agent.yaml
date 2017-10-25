@@ -9,10 +9,21 @@ spec:
       labels:
         app: drone-agent
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - drone-agent
+              topologyKey: kubernetes.io/hostname
       containers:
       - name: drone-agent
         image: drone/agent:0.8
-        args: ["agent"]
         env:
         - name: DRONE_SERVER
           # this server value may be different depending on how you set up your kubernetes
